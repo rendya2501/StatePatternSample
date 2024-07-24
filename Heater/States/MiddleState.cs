@@ -1,5 +1,10 @@
+using Heater.Context;
+
 namespace Heater.States;
 
+/// <summary>
+/// 中状態
+/// </summary>
 public sealed class MiddleState : IHeaterState
 {
     private MiddleState() { }

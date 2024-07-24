@@ -1,4 +1,7 @@
-namespace Heater.States;
+using Heater.Exceptions;
+using Heater.States;
+
+namespace Heater.Context;
 
 /// <summary>
 /// Contextクラス
@@ -8,8 +11,9 @@ namespace Heater.States;
 /// </remarks>
 public class HeaterContext
 {
-    //現在の状態を持つ
+    // 現在の状態を持つ
     private IHeaterState _state = OffState.Instance;
+    // StateパターンにObserverパターンを適応
     public event Action? StateChanged;
 
     public void Up()
@@ -41,6 +45,9 @@ public class HeaterContext
         Send();
     }
 
+    /// <summary>
+    /// ファイル出力部分
+    /// </summary>
     private void Send()
     {
         string path = "heater.txt";
@@ -55,6 +62,7 @@ public class HeaterContext
     internal void ChangeState(IHeaterState state)
     {
         _state = state;
+        // Stateが変わったタイミングで通知する
         StateChanged?.Invoke();
     }
 }

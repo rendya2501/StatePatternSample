@@ -1,4 +1,4 @@
-using Heater.States;
+using Heater.Context;
 
 namespace Heater;
 
@@ -6,14 +6,13 @@ public partial class Form1 : Form
 {
     private readonly HeaterContext _context = new();
 
-    //private enum Condition { OFF, Low, High }
-    //private Condition _condition = Condition.OFF;
     public Form1()
     {
         InitializeComponent();
         StartPosition = FormStartPosition.CenterScreen;
 
         Context_StateChanged();
+        // 状態変更の通知を受信する
         _context.StateChanged += Context_StateChanged;
     }
 
@@ -22,8 +21,18 @@ public partial class Form1 : Form
         DisplayLabel.Text = _context.GetText();
     }
 
+    /// <summary>
+    /// Upボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param> <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void UpButton_Click(object sender, EventArgs e)
     {
+        // Upをべた書きした場合のロジック
         //string path = "heater.txt";
         //if (_condition == Condition.OFF)
         //{
@@ -53,22 +62,35 @@ public partial class Form1 : Form
         //{
         //  throw new Exception("error");
         //}
-        _context.Up();
 
-        //DisplayLabel.Text = _context.GetText();
+        _context.Up();
     }
 
+    /// <summary>
+    /// Downボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void DownButton_Click(object sender, EventArgs e)
     {
         _context.Down();
-        //DisplayLabel.Text = _context.GetText();
     }
 
+    /// <summary>
+    /// On/Offボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void OnOffButton_Click(object sender, EventArgs e)
     {
         _context.OnOff();
     }
 
+    /// <summary>
+    /// Maxボタン
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void MaxButton_Click(object sender, EventArgs e)
     {
         _context.Max();

@@ -1,5 +1,11 @@
+using Heater.Context;
+using Heater.Exceptions;
+
 namespace Heater.States;
 
+/// <summary>
+/// Off状態
+/// </summary>
 public sealed class OffState : IHeaterState
 {
     private OffState() { }
@@ -18,16 +24,19 @@ public sealed class OffState : IHeaterState
 
     public void UpState(HeaterContext context)
     {
+        // offの状態でUpボタンを押下したら警告する
         throw new OffException();
     }
 
     public void DownState(HeaterContext context)
     {
+        // offの状態でDownボタンを押下したら警告する
         throw new OffException();
     }
 
     public void OnOffState(HeaterContext context)
     {
+        // Offの状態からOn/Offボタンを押下したらLowからスタートする
         context.ChangeState(LowState.Instance);
     }
 }

@@ -1,4 +1,4 @@
-namespace Heater.States;
+namespace Heater.Exceptions;
 
 internal sealed class OffException : Exception
 {

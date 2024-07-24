@@ -1,7 +1,13 @@
+using Heater.Context;
+
 namespace Heater.States;
 
+/// <summary>
+/// 高状態
+/// </summary>
 public sealed class HighState : IHeaterState
 {
+    // シングルトン
     private HighState() { }
 
     public static HighState Instance { get; } = new HighState();
